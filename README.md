@@ -3,11 +3,11 @@
 
 ### OpenAPI
 
-http://localhost:8080/happy-animals/v1/pet/swagger-ui.html
+http://localhost:8081/happy-animals/v1/pet/swagger-ui.html
 
 ### H2
 
-http://localhost:8080/happy-animals/v1/pet
+http://localhost:8081/happy-animals/v1/pet
 
 ```
 jdbc:h2:mem:testdb
