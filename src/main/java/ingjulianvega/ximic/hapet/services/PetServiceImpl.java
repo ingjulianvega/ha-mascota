@@ -26,7 +26,7 @@ public class PetServiceImpl implements PetService {
     private final PetMapper petMapper;
 
 
-    @Cacheable(cacheNames = "personListCache")
+    @Cacheable(cacheNames = "petListCache")
     @Override
     public PetList get() {
         log.debug("get()...");
@@ -36,7 +36,7 @@ public class PetServiceImpl implements PetService {
                 .build();
     }
 
-    @Cacheable(cacheNames = "personCache")
+    @Cacheable(cacheNames = "petCache")
     @Override
     public PetDto getById(UUID id) {
         log.debug("getById()...");
