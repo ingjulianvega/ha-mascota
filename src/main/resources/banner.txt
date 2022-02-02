@@ -1,0 +1,11 @@
+  ___ ___      _____                                         __
+ /   |   \    /  _  \                    ______     ____   _/  |_
+/    ~    \  /  /_\  \        ______     \____ \  _/ __ \  \   __\
+\    Y    / /    |    \      /_____/     |  |_> > \  ___/   |  |
+ \___|_  /  \____|__  /                  |   __/   \___  >  |__|
+       \/           \/                   |__|          \/
+
+Application Name: ${application.title}
+Application Version: ${application.version}
+${AnsiColor.RED} :: Spring Boot${spring-boot.formatted-version} :: ${AnsiColor.RED}
+${AnsiColor.DEFAULT}
