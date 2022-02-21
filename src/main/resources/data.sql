@@ -1,4 +1,5 @@
---Esta data no se está insertando nunca, se deja para copiar y pegar en la base de datos
+#Esta data no se está insertando nunca, se deja para copiar y pegar en la base de datos
+#Se debe ejecutar dentro de un sql del esquema pet
 INSERT INTO pet
 (id, created_by, created_date, last_modified_by, last_modified_date, version, name, type)
 VALUES('134d2db6-e9fe-4e59-99b2-75a868ab9a9b', 'spring', NOW(), 'spring', NOW(), 0, 'Varda', 'Perro');
