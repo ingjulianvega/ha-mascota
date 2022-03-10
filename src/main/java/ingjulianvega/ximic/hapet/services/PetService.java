@@ -9,7 +9,7 @@ import ingjulianvega.ximic.hapet.web.model.PetList;
 import java.util.UUID;
 
 public interface PetService {
-    PetList get();
+    PetList get(Boolean usingCache);
 
     PetDto getById(UUID id);
 

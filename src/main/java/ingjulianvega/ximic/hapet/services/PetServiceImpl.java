@@ -26,9 +26,9 @@ public class PetServiceImpl implements PetService {
     private final PetMapper petMapper;
 
 
-    @Cacheable(cacheNames = "petListCache")
+    @Cacheable(cacheNames = "petListCache", condition = "#usingCache == true")
     @Override
-    public PetList get() {
+    public PetList get(Boolean usingCache) {
         log.debug("get()...");
         return PetList
                 .builder()

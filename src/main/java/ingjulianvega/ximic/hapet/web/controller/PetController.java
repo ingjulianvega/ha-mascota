@@ -20,8 +20,8 @@ public class PetController implements PetI {
     private final PetService petService;
 
     @Override
-    public ResponseEntity<PetList> get() {
-        return new ResponseEntity<>(petService.get(), HttpStatus.OK);
+    public ResponseEntity<PetList> get(Boolean usingCache) {
+        return new ResponseEntity<>(petService.get(usingCache), HttpStatus.OK);
     }
 
     @Override

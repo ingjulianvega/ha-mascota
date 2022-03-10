@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -34,7 +35,7 @@ public interface PetI {
     @RequestMapping(value = "/",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<PetList> get();
+    ResponseEntity<PetList> get(@Parameter(in = ParameterIn.QUERY, description = "Using cache?", required = true, schema = @Schema()) @NotNull @Valid @RequestParam(value = "using-cache", required = true, defaultValue = "false") Boolean usingCache);
 
 
     @Operation(summary = "Endpoint to get the information of a pet given the id", description = "Returns a pet", tags = {"pet"})
