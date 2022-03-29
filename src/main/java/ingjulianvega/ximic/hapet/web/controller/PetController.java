@@ -2,6 +2,7 @@ package ingjulianvega.ximic.hapet.web.controller;
 
 
 import ingjulianvega.ximic.hapet.services.PetService;
+import ingjulianvega.ximic.hapet.web.model.PagedPetList;
 import ingjulianvega.ximic.hapet.web.model.Pet;
 import ingjulianvega.ximic.hapet.web.model.PetDto;
 import ingjulianvega.ximic.hapet.web.model.PetList;
@@ -20,8 +21,8 @@ public class PetController implements PetI {
     private final PetService petService;
 
     @Override
-    public ResponseEntity<PetList> get(Boolean usingCache) {
-        return new ResponseEntity<>(petService.get(usingCache), HttpStatus.OK);
+    public ResponseEntity<PagedPetList> get(Boolean usingCache, Integer pageNo, Integer pageSize, String sortBy) {
+        return new ResponseEntity<>(petService.get(usingCache, pageNo, pageSize, sortBy), HttpStatus.OK);
     }
 
     @Override

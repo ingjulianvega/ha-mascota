@@ -2,6 +2,7 @@ package ingjulianvega.ximic.hapet.services;
 
 
 
+import ingjulianvega.ximic.hapet.web.model.PagedPetList;
 import ingjulianvega.ximic.hapet.web.model.Pet;
 import ingjulianvega.ximic.hapet.web.model.PetDto;
 import ingjulianvega.ximic.hapet.web.model.PetList;
@@ -9,7 +10,7 @@ import ingjulianvega.ximic.hapet.web.model.PetList;
 import java.util.UUID;
 
 public interface PetService {
-    PetList get(Boolean usingCache);
+    PagedPetList get(Boolean usingCache, Integer pageNo, Integer pageSize, String sortBy);
 
     PetDto getById(UUID id);
 

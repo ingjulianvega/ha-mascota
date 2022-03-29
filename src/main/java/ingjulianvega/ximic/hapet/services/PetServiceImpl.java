@@ -6,12 +6,17 @@ import ingjulianvega.ximic.hapet.domain.PetEntity;
 import ingjulianvega.ximic.hapet.domain.repositories.PetRepository;
 import ingjulianvega.ximic.hapet.exception.PetException;
 import ingjulianvega.ximic.hapet.web.Mappers.PetMapper;
+import ingjulianvega.ximic.hapet.web.model.PagedPetList;
 import ingjulianvega.ximic.hapet.web.model.Pet;
 import ingjulianvega.ximic.hapet.web.model.PetDto;
 import ingjulianvega.ximic.hapet.web.model.PetList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -28,11 +33,20 @@ public class PetServiceImpl implements PetService {
 
     @Cacheable(cacheNames = "petListCache", condition = "#usingCache == true")
     @Override
-    public PetList get(Boolean usingCache) {
+    public PagedPetList get(Boolean usingCache, Integer pageNo, Integer pageSize, String sortBy) {
         log.debug("get()...");
-        return PetList
-                .builder()
-                .personList(petMapper.personEntityListToPersonDtoList(petRepository.findAllByOrderByName()))
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Page<PetEntity> springPersonPage = petRepository.findAll(paging);
+        return PagedPetList.builder()
+                .totalItems(springPersonPage.getTotalElements())
+                .page(ingjulianvega.ximic.hapet.web.model.Page.builder()
+                        .sort(springPersonPage.getPageable().getSort().toString())
+                        .totalPages(springPersonPage.getTotalPages())
+                        .currentPage(springPersonPage.getPageable().getPageNumber())
+                        .size(springPersonPage.getPageable().getPageSize())
+                        .build())
+                .petList(petMapper.personEntityListToPersonDtoList(petRepository.findAll(paging).getContent()))
+
                 .build();
     }
 

@@ -2,6 +2,7 @@ package ingjulianvega.ximic.hapet.web.controller;
 
 
 import ingjulianvega.ximic.hapet.web.model.ApiError;
+import ingjulianvega.ximic.hapet.web.model.PagedPetList;
 import ingjulianvega.ximic.hapet.web.model.Pet;
 import ingjulianvega.ximic.hapet.web.model.PetDto;
 import ingjulianvega.ximic.hapet.web.model.PetList;
@@ -35,7 +36,11 @@ public interface PetI {
     @RequestMapping(value = "/",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<PetList> get(@Parameter(in = ParameterIn.QUERY, description = "Using cache?", required = true, schema = @Schema()) @NotNull @Valid @RequestParam(value = "using-cache", required = true, defaultValue = "false") Boolean usingCache);
+    ResponseEntity<PagedPetList> get(@Parameter(in = ParameterIn.QUERY, description = "Using cache?", required = true, schema = @Schema()) @NotNull @Valid @RequestParam(value = "using-cache", required = true, defaultValue = "false") Boolean usingCache,
+                                             @Parameter(in = ParameterIn.QUERY, description = "Page number", required = true, schema = @Schema()) @NotNull @Valid @RequestParam(value = "page-no", required = true, defaultValue = "0") Integer pageNo,
+                                             @Parameter(in = ParameterIn.QUERY, description = "Page size", required = true, schema = @Schema()) @NotNull @Valid @RequestParam(value = "page-size", required = true, defaultValue = "3") Integer pageSize,
+                                             @Parameter(in = ParameterIn.QUERY, description = "Sort by", required = true, schema = @Schema()) @NotNull @Valid @RequestParam(value = "sort-by", required = true, defaultValue = "name") String sortBy
+    );
 
 
     @Operation(summary = "Endpoint to get the information of a pet given the id", description = "Returns a pet", tags = {"pet"})
